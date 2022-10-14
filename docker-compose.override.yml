@@ -1,0 +1,9 @@
+version: "3.8"
+
+# Development environment override
+services:
+  fastapi:
+    environment:
+      DEBUG: 1
+    volumes:
+      - ./app:/srv/app:rw,cached

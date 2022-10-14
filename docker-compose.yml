@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  fastapi:
+    build:
+      context: .
+      target: fastapi_python
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - database
+    ports:
+      - "8080:80"
+
+  database:
+    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cspfmba}
+      POSTGRES_USER: ${POSTGRES_USER:-cspfmba}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe!}
+    ports:
+      - "5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+
+volumes:
+  redis-data: null
+  db-data: null
