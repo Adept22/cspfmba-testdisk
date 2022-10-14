@@ -7,6 +7,7 @@ services:
       target: fastapi_python
     restart: unless-stopped
     environment:
+      DEBUG: 0
       DATABASE_URL: ${DATABASE_URL}
     depends_on:
       - database

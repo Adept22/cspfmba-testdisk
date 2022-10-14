@@ -7,10 +7,8 @@ if [ "${1#-}" != "$1" ]; then
 fi
 
 if [ "$1" = 'python3' ]; then
-	echo "Its python3"
-
 	if [[ ! -z "$DATABASE_URL" ]]; then
-		echo "Database URL exist"
+		echo "Database URL found"
 
 		if ls -A db/migrations/migration/versions/*.py > /dev/null 2>&1; then
 			echo "Make migrations"
